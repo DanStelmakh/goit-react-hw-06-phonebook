@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, removeContact, filteredConatcts } from './actions';
+import { addContact, removeContact } from './actions';
 
 const initialState = {
   contacts: [
