@@ -36,6 +36,7 @@ export const ContactForm = () => {
     e.preventDefault();
     //  onSubmit(name, number);
     const name = e.target.elements.name.value;
+    console.log(name, `name`);
     const number = e.target.elements.number.value;
 
     dispatch(addContact(name, number));
