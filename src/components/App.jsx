@@ -1,19 +1,16 @@
-// import { useState } from 'react';
+// import { useEffect, useState } from 'react';
 import React from 'react';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 // import shortid from 'shortid';
 import { ContactList } from './ContactList/ContactList';
-// import { Filter } from 'components/Filter/Filter';
+import { Filter } from 'components/Filter/Filter';
 import { Container } from 'components/App.styled';
-import { useSelector } from 'react-redux';
-// import { useLocalStoradge } from 'Hooks/LocalStorage';
 
 export const App = () => {
-  //   const [contacts, setContacts] = useState([]);
-  const totalContacts = useSelector(state => state.contacts);
+  //   const [filter, setFilter] = useState('');
 
   //   const changeFilter = e => {
-  //     return e.currentTarget.value;
+  //     setFilter(e.currentTarget.value);
   //   };
 
   //   const addContact = (name, number) => {
@@ -35,27 +32,20 @@ export const App = () => {
   //     );
   //   };
 
-  //  const filteredContacts = contacts.filter(contact =>
-  //    contact.name.toLowerCase().includes(filter.toLowerCase())
-  //  );
-
-  //   useEffect(() => {
-  //     localStorage.setItem(`contacts`, JSON.stringify(contacts));
-  //   }, [contacts]);
+  //   const filteredContacts = contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(filter.toLowerCase())
+  //   );
 
   return (
     <Container>
       <h1>Phonebook</h1>
       <ContactForm></ContactForm>
       <h2>Contacts</h2>
-      {/* <Filter></Filter> */}
-      <ContactList
-      //   contacts={filteredContacts}
-      //   onRemoveContact={removeContact}
-      ></ContactList>
-      <div>
-        <span>Total number of contacts: {totalContacts.length}</span>
-      </div>
+      <Filter></Filter>
+      <ContactList></ContactList>
+      {/* <div>
+        <span>Total number of contacts: {contacts.length}</span>
+      </div> */}
     </Container>
   );
 };

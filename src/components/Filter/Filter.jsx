@@ -1,28 +1,24 @@
-// import React from 'react';
-// import { Input } from 'components/ContactForm/ContactForm.styled';
-// import { FilterTitle } from 'components/Filter/Filter.styled';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { filteredContacts } from 'redux/actions';
-// import { useState } from 'react';
+import React from 'react';
+import { Input } from 'components/ContactForm/ContactForm.styled';
+import { FilterTitle } from 'components/Filter/Filter.styled';
 
-// export const Filter = () => {
-//   const filterContact = useSelector(state => state.filter);
-//   const dispatch = useDispatch();
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
+export const Filter = () => {
+  const dispatch = useDispatch();
 
-//   const changeFilter = e => {
-//     const data = e.currentTarget.value;
-//     return data;
-//   };
-//   return (
-//     <label>
-//       <FilterTitle>Find contacts by name:</FilterTitle>
-//       <Input
-//         type="text"
-//         name="filter"
-//         placeholder="Enter name"
-//         //   value={}
-//         //   onChange={}
-//       ></Input>
-//     </label>
-//   );
-// };
+  const onChange = e => {
+    dispatch(setFilter(e.currentTarget));
+  };
+  return (
+    <label>
+      <FilterTitle>Find contacts by name:</FilterTitle>
+      <Input
+        type="text"
+        name="filter"
+        placeholder="Enter name"
+        onChange={onChange}
+      ></Input>
+    </label>
+  );
+};

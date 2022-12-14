@@ -1,15 +1,33 @@
-// import { createStore } from 'redux';
-// import { devToolsEnhancer } from '@redux-devtools/extension';
 import { configureStore } from '@reduxjs/toolkit';
-// import { rootReducer } from './redusers';
-import { contactReducer } from './redusers';
+import { contactsReducer } from './contactSlice';
+import { filterReducer } from './filterSlice';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
-  reducer: {
-    contacts: contactReducer,
-    //  filter: filterReducer,
-  },
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
-// Создаем расширение стора чтобы добавить инструменты разработчика
-// const enhancer = devToolsEnhancer();
-// export const store = createStore(rootReducer, enhancer);
+
+export const persistor = persistStore(store);

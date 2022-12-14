@@ -10,13 +10,13 @@ import {
   Txt,
 } from 'components/ContactForm/ContactForm.styled';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactSlice';
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -34,13 +34,7 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    //  onSubmit(name, number);
-    const name = e.target.elements.name.value;
-    console.log(name, `name`);
-    const number = e.target.elements.number.value;
-
     dispatch(addContact(name, number));
-
     setName('');
     setNumber('');
   };
