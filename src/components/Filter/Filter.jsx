@@ -3,12 +3,12 @@ import { Input } from 'components/ContactForm/ContactForm.styled';
 import { FilterTitle } from 'components/Filter/Filter.styled';
 
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/contactSlice';
 export const Filter = () => {
   const dispatch = useDispatch();
 
   const onChange = e => {
-    dispatch(setFilter(e.currentTarget));
+    dispatch(setFilter(e.currentTarget.value));
   };
   return (
     <label>

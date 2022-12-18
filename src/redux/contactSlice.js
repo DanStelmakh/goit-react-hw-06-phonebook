@@ -7,6 +7,7 @@ const contactsInitialState = {
     { id: shortid.generate(), name: 'Dad', number: '987456321' },
     { id: shortid.generate(), name: 'Mom', number: '154987536' },
   ],
+  filter: '',
 };
 
 const contactsSlice = createSlice({
@@ -28,10 +29,13 @@ const contactsSlice = createSlice({
       },
     },
     removeContact(state, action) {
-      state.contatcs.filter(contact => contact.id !== action.payload);
+      state.contacts.filter(contact => contact.id !== action.payload);
+    },
+    setFilter(state, action) {
+      state.filter = action.payload;
     },
   },
 });
 
-export const { addContact, removeContact } = contactsSlice.actions;
+export const { addContact, removeContact, setFilter } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
