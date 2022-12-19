@@ -2,11 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import shortid from 'shortid';
 
 const contactsInitialState = {
-  contacts: [
-    { id: shortid.generate(), name: 'Dan', number: '123456789' },
-    { id: shortid.generate(), name: 'Dad', number: '987456321' },
-    { id: shortid.generate(), name: 'Mom', number: '154987536' },
-  ],
+  contacts: [],
   filter: '',
 };
 
@@ -29,7 +25,9 @@ const contactsSlice = createSlice({
       },
     },
     removeContact(state, action) {
-      state.contacts.filter(contact => contact.id !== action.payload);
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
+      );
     },
     setFilter(state, action) {
       state.filter = action.payload;
